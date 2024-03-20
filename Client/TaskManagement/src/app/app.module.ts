@@ -5,14 +5,23 @@ import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 import {AuthModule} from "./auth/auth.module";
 import { provideAnimationsAsync } from '@angular/platform-browser/animations/async';
+import {JwtModule} from "@auth0/angular-jwt";
+import {HttpClientModule} from "@angular/common/http";
 
 @NgModule({
   declarations: [
     AppComponent
   ],
   imports: [
+    JwtModule.forRoot({
+      config: {
+        tokenGetter: () => localStorage.getItem('token'),
+        allowedDomains: ['localhost:8080']
+      }
+    }),
     BrowserModule,
     AppRoutingModule,
+    HttpClientModule,
     AuthModule
   ],
   providers: [

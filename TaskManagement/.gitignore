@@ -3,6 +3,7 @@ mvnw
 mvnw.cmd
 pom.xml
 src/main/resources
+.mvn
 target/
 !.mvn/wrapper/maven-wrapper.jar
 !**/src/main/**/target/
