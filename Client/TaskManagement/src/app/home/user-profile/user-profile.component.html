@@ -1,0 +1,17 @@
+<div class="main-container">
+  <div>
+    <app-sidebar></app-sidebar>
+  </div>
+  <div class="right-container">
+    <div>
+      <app-header [title]="'User Profile'"></app-header>
+    </div>
+    <div>
+      <app-card [cardTitle]="'User profile'"[headerColor]="'indianred'">
+        <div class="card-body">
+          <app-user-profile-form></app-user-profile-form>
+        </div>
+      </app-card>
+    </div>
+  </div>
+</div>

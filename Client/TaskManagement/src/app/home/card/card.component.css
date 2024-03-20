@@ -1,0 +1,21 @@
+.card {
+  position: relative;
+  width: 90%;
+}
+
+.header {
+  position: absolute;
+  top: -20px;
+  left: 5%;
+  width: 85%;
+  /*background-color: indianred;*/
+  color: white;
+  padding: 15px;
+  border-radius: 4px;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 1);
+}
+
+.content {
+  flex: 1;
+  padding: 60px 20px;
+}

@@ -1,0 +1,27 @@
+<mat-sidenav-container class="sidenav-container">
+  <mat-sidenav #sidenav mode="side" opened="true">
+    <div class="sidebar-header">
+      <img src="favicon.ico" class="header-icon" alt="home">
+      App
+    </div>
+    <mat-nav-list>
+      <a mat-list-item routerLink="/app/home/dashboard" routerLinkActive="active">
+        <img src="./assets/dashboard-icon.png" class="sidebar-icon" alt="Projects">
+        Dashboard
+      </a>
+      <a mat-list-item routerLink="/app/home/tasks" routerLinkActive="active">
+        <img src="./assets/task-icon.png" class="sidebar-icon" alt="Tasks">
+        Tasks
+      </a>
+      <a mat-list-item routerLink="/app/home/user-profile" routerLinkActive="active">
+        <img src="./assets/user-icon.png" class="sidebar-icon" alt="User Profile">
+        User profile
+      </a>
+
+      <a mat-list-item routerLink="/app/home/notifications" routerLinkActive="active">
+        <img src="./assets/notification-icon.png" class="sidebar-icon" alt="Notifications">
+        Notifications
+      </a>
+    </mat-nav-list>
+  </mat-sidenav>
+</mat-sidenav-container>
