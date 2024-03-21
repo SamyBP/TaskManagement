@@ -7,7 +7,7 @@ import org.springframework.stereotype.Service;
 import ro.app.taskmanagement.dataAccess.IUserRepository;
 import ro.app.taskmanagement.dtos.SignInDto;
 import ro.app.taskmanagement.dtos.SignUpDto;
-import ro.app.taskmanagement.mappers.UserMapper;
+import ro.app.taskmanagement.mappers.Mapper;
 import ro.app.taskmanagement.models.User;
 import ro.app.taskmanagement.utils.EmailAlreadyTakenException;
 import ro.app.taskmanagement.utils.InvalidCredentialException;
@@ -16,10 +16,10 @@ import ro.app.taskmanagement.utils.InvalidCredentialException;
 public class AuthenticationService {
 
     IUserRepository userRepository;
-    UserMapper userMapper;
+    Mapper<User> userMapper;
 
     @Autowired
-    public AuthenticationService(IUserRepository userRepository, UserMapper userMapper) {
+    public AuthenticationService(IUserRepository userRepository, Mapper<User> userMapper) {
         this.userRepository = userRepository;
         this.userMapper = userMapper;
     }
@@ -29,7 +29,7 @@ public class AuthenticationService {
             throw new EmailAlreadyTakenException("Email already taken");
         }
 
-        User newUser = userMapper.toEntity(dto);
+        User newUser = userMapper.createMap(dto, User.class);
         newUser.setPassword(BCrypt.hashpw(newUser.getPassword(), BCrypt.gensalt()));
         return userRepository.save(newUser);
     }

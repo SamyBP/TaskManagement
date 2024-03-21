@@ -20,9 +20,14 @@ public class User {
     private long id;
     private String firstName;
     private String lastName;
+    private String username;
     private String email;
     private String password;
     private String address;
+    private String phoneNumber;
+    private String city;
+    private String country;
+    private String postalCode;
 
     @OneToMany
     private Collection<Task> tasks;
