@@ -14,9 +14,10 @@ public class JwtHandler {
     private String secretKey;
     private static final Long EXPIRATION_TIME = 864_000_000L;
 
-    public String generateToken(String email) {
+    public String generateToken(String email, Long id) {
 
         Claims claims = Jwts.claims().setSubject(email);
+        claims.put("id",  id);
         return Jwts.builder()
                 .setClaims(claims)
                 .setIssuedAt(new Date(System.currentTimeMillis()))
@@ -31,5 +32,13 @@ public class JwtHandler {
                 .parseClaimsJws(token)
                 .getBody()
                 .getSubject();
+    }
+
+    public Long extractId(String token) {
+        return Jwts.parser()
+                .setSigningKey(secretKey)
+                .parseClaimsJws(token)
+                .getBody()
+                .get("id", Long.class);
     }
 }

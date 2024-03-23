@@ -52,7 +52,7 @@ public class AuthenticationController {
 
         try {
             User signedInUser = authenticationService.signIn(dto);
-            String token = jwtHandler.generateToken(signedInUser.getEmail());
+            String token = jwtHandler.generateToken(signedInUser.getEmail(), signedInUser.getId());
             SignInResponseDto response = new SignInResponseDto(true, null, token);
 
             return ResponseEntity.ok(response);

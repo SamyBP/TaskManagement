@@ -5,6 +5,8 @@ import lombok.AllArgsConstructor;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
+import ro.app.taskmanagement.validation.ValidEmail;
+import ro.app.taskmanagement.validation.ValidPhoneNumber;
 
 import java.util.Collection;
 
@@ -18,15 +20,29 @@ public class User {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private long id;
+
     private String firstName;
+
     private String lastName;
+
+    @Column(unique = true)
     private String username;
+
+    @ValidEmail
+    @Column(unique = true)
     private String email;
+
     private String password;
+
     private String address;
+
+    @ValidPhoneNumber
     private String phoneNumber;
+
     private String city;
+
     private String country;
+
     private String postalCode;
 
     @OneToMany

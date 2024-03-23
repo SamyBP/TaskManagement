@@ -15,8 +15,7 @@ export class SignInComponent implements OnInit{
   errorMessage! : string;
 
   constructor(private formBuilder : FormBuilder,
-              private authenticationService : AuthenticationService,
-              private tokenService : TokenService) {
+              private authenticationService : AuthenticationService) {
   }
 
   ngOnInit(): void {

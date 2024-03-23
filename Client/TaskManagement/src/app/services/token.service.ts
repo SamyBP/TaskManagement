@@ -11,4 +11,8 @@ export class TokenService {
   public decodeToken(token : any) : any {
     return this.jwtHelper.decodeToken(token);
   }
+
+  public getAuthToken() : string | null {
+    return localStorage.getItem("token");
+  }
 }

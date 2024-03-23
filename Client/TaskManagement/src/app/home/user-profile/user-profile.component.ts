@@ -1,5 +1,4 @@
 import { Component } from '@angular/core';
-import {TasksComponent} from "../tasks/tasks.component";
 
 @Component({
   selector: 'app-user-profile',
@@ -8,5 +7,4 @@ import {TasksComponent} from "../tasks/tasks.component";
 })
 export class UserProfileComponent {
 
-    protected readonly TasksComponent = TasksComponent;
 }
