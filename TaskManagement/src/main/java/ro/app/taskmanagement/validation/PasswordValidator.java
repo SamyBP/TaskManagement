@@ -3,7 +3,7 @@ package ro.app.taskmanagement.validation;
 import javax.validation.ConstraintValidator;
 import javax.validation.ConstraintValidatorContext;
 
-public class PasswordConstraintValidator implements ConstraintValidator<ValidPassword, String> {
+public class PasswordValidator implements ConstraintValidator<ValidPassword, String> {
 
     private final int MIN_LENGTH = 6;
 

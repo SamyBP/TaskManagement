@@ -9,14 +9,16 @@ import ro.app.taskmanagement.dtos.SignInDto;
 import ro.app.taskmanagement.dtos.SignUpDto;
 import ro.app.taskmanagement.mappers.Mapper;
 import ro.app.taskmanagement.models.User;
-import ro.app.taskmanagement.utils.EmailAlreadyTakenException;
-import ro.app.taskmanagement.utils.InvalidCredentialException;
+import ro.app.taskmanagement.exceptions.EmailAlreadyTakenException;
+import ro.app.taskmanagement.exceptions.InvalidCredentialException;
+
+import javax.validation.Valid;
 
 @Service
 public class AuthenticationService {
 
-    IUserRepository userRepository;
-    Mapper<User> userMapper;
+    private final IUserRepository userRepository;
+    private final Mapper<User> userMapper;
 
     @Autowired
     public AuthenticationService(IUserRepository userRepository, Mapper<User> userMapper) {
@@ -24,7 +26,7 @@ public class AuthenticationService {
         this.userMapper = userMapper;
     }
 
-    public User signUp(SignUpDto dto) throws EmailAlreadyTakenException {
+    public User signUp(@Valid SignUpDto dto) throws EmailAlreadyTakenException {
         if (userRepository.findByEmail(dto.getEmail()) != null) {
             throw new EmailAlreadyTakenException("Email already taken");
         }
@@ -34,7 +36,7 @@ public class AuthenticationService {
         return userRepository.save(newUser);
     }
 
-    public User signIn(SignInDto dto) throws InvalidCredentialException{
+    public User signIn(@Valid SignInDto dto) throws InvalidCredentialException{
 
         User user = userRepository.findByEmail(dto.getEmail());
 

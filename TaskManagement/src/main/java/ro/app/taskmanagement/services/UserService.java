@@ -5,13 +5,16 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import ro.app.taskmanagement.dataAccess.IUserRepository;
 import ro.app.taskmanagement.dtos.UserEditDto;
+import ro.app.taskmanagement.exceptions.ResourceNotFoundException;
 import ro.app.taskmanagement.mappers.Mapper;
 import ro.app.taskmanagement.models.User;
 
+import javax.validation.Valid;
+
 @Service
 public class UserService {
-    IUserRepository userRepository;
-    Mapper<User> userMapper;
+    private final IUserRepository userRepository;
+    private final Mapper<User> userMapper;
 
     @Autowired
     public UserService(IUserRepository userRepository, Mapper<User> userMapper) {
@@ -19,9 +22,9 @@ public class UserService {
         this.userMapper = userMapper;
     }
 
-    public User editUserProfile(Long id, UserEditDto dto) throws EntityNotFoundException{
+    public User editUserProfile(Long id, @Valid UserEditDto dto) throws EntityNotFoundException{
         userRepository.findById(id)
-                .orElseThrow(() -> new EntityNotFoundException("User not found"));
+                .orElseThrow(() -> new ResourceNotFoundException("User not found"));
 
         User userToUpdate = userMapper.createMap(dto, User.class);
         userToUpdate.setId(id);
