@@ -3,16 +3,14 @@ package ro.app.taskmanagement.controllers;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
-import org.springframework.stereotype.Controller;
+import org.springframework.validation.annotation.Validated;
 import org.springframework.web.bind.annotation.*;
 import ro.app.taskmanagement.dtos.UserEditDto;
 import ro.app.taskmanagement.models.User;
 import ro.app.taskmanagement.services.UserService;
 
-import javax.validation.Valid;
 
-
-@CrossOrigin(origins = "http://localhost:4200")
+@CrossOrigin(origins = "${cross.origins}")
 @RestController
 @RequestMapping("/app/user")
 public class UserController {
@@ -25,9 +23,9 @@ public class UserController {
     }
 
     @PutMapping("/edit-profile/{id}")
-    public ResponseEntity<User> editProfile(@PathVariable(value = "id") Long id,
-                                            @Valid @RequestBody UserEditDto dto) {
+    public ResponseEntity<?> editProfile(@PathVariable(value = "id") Long id,
+                                            @Validated @RequestBody UserEditDto dto) {
 
-        return new ResponseEntity<>(userService.editUserProfile(id, dto), HttpStatus.valueOf(200));
+        return new ResponseEntity<>(userService.editUserProfile(id, dto), HttpStatus.OK);
     }
 }

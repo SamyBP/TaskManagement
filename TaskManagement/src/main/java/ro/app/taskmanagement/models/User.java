@@ -48,6 +48,9 @@ public class User {
     @OneToMany
     private Collection<Task> tasks;
 
+    @OneToMany
+    private Collection<Notification> notifications;
+
     public User(String firstName, String lastName, String email, String password, String address) {
         this.firstName = firstName;
         this.lastName = lastName;

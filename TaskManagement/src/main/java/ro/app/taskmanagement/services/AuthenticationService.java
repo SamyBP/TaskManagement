@@ -2,7 +2,6 @@ package ro.app.taskmanagement.services;
 
 import org.mindrot.jbcrypt.BCrypt;
 import org.springframework.beans.factory.annotation.Autowired;
-//import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.stereotype.Service;
 import ro.app.taskmanagement.dataAccess.IUserRepository;
 import ro.app.taskmanagement.dtos.SignInDto;
@@ -11,8 +10,6 @@ import ro.app.taskmanagement.mappers.Mapper;
 import ro.app.taskmanagement.models.User;
 import ro.app.taskmanagement.exceptions.EmailAlreadyTakenException;
 import ro.app.taskmanagement.exceptions.InvalidCredentialException;
-
-import javax.validation.Valid;
 
 @Service
 public class AuthenticationService {
@@ -26,7 +23,7 @@ public class AuthenticationService {
         this.userMapper = userMapper;
     }
 
-    public User signUp(@Valid SignUpDto dto) throws EmailAlreadyTakenException {
+    public User signUp(SignUpDto dto) throws EmailAlreadyTakenException {
         if (userRepository.findByEmail(dto.getEmail()) != null) {
             throw new EmailAlreadyTakenException("Email already taken");
         }
@@ -36,7 +33,7 @@ public class AuthenticationService {
         return userRepository.save(newUser);
     }
 
-    public User signIn(@Valid SignInDto dto) throws InvalidCredentialException{
+    public User signIn(SignInDto dto) throws InvalidCredentialException{
 
         User user = userRepository.findByEmail(dto.getEmail());
 

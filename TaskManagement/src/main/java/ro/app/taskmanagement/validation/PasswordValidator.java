@@ -1,11 +1,17 @@
 package ro.app.taskmanagement.validation;
 
+import ro.app.taskmanagement.exceptions.InvalidPasswordException;
+
 import javax.validation.ConstraintValidator;
 import javax.validation.ConstraintValidatorContext;
 
 public class PasswordValidator implements ConstraintValidator<ValidPassword, String> {
 
     private final int MIN_LENGTH = 6;
+
+    @Override
+    public void initialize(ValidPassword constraintAnnotation) {
+    }
 
     @Override
     public boolean isValid(final String password, final ConstraintValidatorContext context) {
@@ -17,18 +23,15 @@ public class PasswordValidator implements ConstraintValidator<ValidPassword, Str
 
 
         if (!valid) {
-            StringBuilder errorMessage = new StringBuilder("Invalid password.");
             if (!hasUppercase) {
-                errorMessage.append("Must contain at least one uppercase");
+                throw new InvalidPasswordException("Must contain at least one uppercase");
             }
             if (!hasDigit) {
-                errorMessage.append("Must contain at least one digit");
+                throw new InvalidPasswordException("Must contain at least one digit");
             }
             if (hasWhiteSpaces) {
-                errorMessage.append("Must not contain whitespaces");
+                throw new InvalidPasswordException("Must not contain whitespaces");
             }
-
-            context.buildConstraintViolationWithTemplate(errorMessage.toString()).addConstraintViolation();
         }
 
         return valid;

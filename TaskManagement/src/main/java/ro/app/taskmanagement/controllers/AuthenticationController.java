@@ -3,6 +3,7 @@ package ro.app.taskmanagement.controllers;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
+import org.springframework.validation.annotation.Validated;
 import org.springframework.web.bind.annotation.*;
 import ro.app.taskmanagement.dtos.SignInDto;
 import ro.app.taskmanagement.dtos.SignInResponseDto;
@@ -11,10 +12,7 @@ import ro.app.taskmanagement.models.User;
 import ro.app.taskmanagement.services.AuthenticationService;
 import ro.app.taskmanagement.handlers.JwtHandler;
 
-import javax.validation.Valid;
-
-
-@CrossOrigin(origins = "http://localhost:4200")
+@CrossOrigin(origins = "${cross.origins}")
 @RestController
 @RequestMapping("/app/auth")
 public class AuthenticationController {
@@ -29,15 +27,15 @@ public class AuthenticationController {
     }
 
     @PostMapping("/signup")
-    public ResponseEntity<User> signUp(@Valid @RequestBody SignUpDto dto) {
+    public ResponseEntity<?> signUp(@Validated @RequestBody SignUpDto dto) {
         return new ResponseEntity<>(authenticationService.signUp(dto), HttpStatus.CREATED);
     }
 
     @PostMapping("/signin")
-    public ResponseEntity<SignInResponseDto> signIn(@Valid @RequestBody SignInDto dto) {
+    public ResponseEntity<?> signIn(@Validated @RequestBody SignInDto dto) {
         User signedInUser = authenticationService.signIn(dto);
         String token = jwtHandler.generateToken(signedInUser.getEmail(), signedInUser.getId());
-        SignInResponseDto response = new SignInResponseDto(true, null, token);
+        SignInResponseDto response = new SignInResponseDto(true, token);
         return new ResponseEntity<>(response, HttpStatus.ACCEPTED);
     }
 }

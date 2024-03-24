@@ -9,8 +9,6 @@ import ro.app.taskmanagement.exceptions.ResourceNotFoundException;
 import ro.app.taskmanagement.mappers.Mapper;
 import ro.app.taskmanagement.models.User;
 
-import javax.validation.Valid;
-
 @Service
 public class UserService {
     private final IUserRepository userRepository;
@@ -22,7 +20,7 @@ public class UserService {
         this.userMapper = userMapper;
     }
 
-    public User editUserProfile(Long id, @Valid UserEditDto dto) throws EntityNotFoundException{
+    public User editUserProfile(Long id,UserEditDto dto) throws EntityNotFoundException{
         userRepository.findById(id)
                 .orElseThrow(() -> new ResourceNotFoundException("User not found"));
 

@@ -11,6 +11,5 @@ import lombok.Setter;
 @AllArgsConstructor
 public class SignInResponseDto {
     private boolean isSignInSuccessful;
-    private String errorMessage;
     private String token;
 }
