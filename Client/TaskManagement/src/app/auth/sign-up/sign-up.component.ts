@@ -3,6 +3,8 @@ import {FormBuilder, FormGroup, Validators} from "@angular/forms";
 import {AuthenticationService} from "../../services/authentication.service";
 import {SignUpDto} from "../../dtos/sign-up.dto";
 import {ErrorResponseDto} from "../../dtos/error-response.dto";
+import {MatSnackBar} from "@angular/material/snack-bar";
+import {Router} from "@angular/router";
 
 @Component({
   selector: 'app-sign-up',
@@ -13,7 +15,9 @@ export class SignUpComponent implements OnInit{
   signUpForm!: FormGroup
 
   constructor(private formBuilder : FormBuilder,
-              private authenticationService: AuthenticationService) {
+              private authenticationService: AuthenticationService,
+              private snackbar : MatSnackBar,
+              private router : Router) {
   }
   ngOnInit(): void {
 
@@ -39,7 +43,14 @@ export class SignUpComponent implements OnInit{
 
     this.authenticationService.signUp(signUpDto).subscribe({
       next: () => {
-        console.log("Sign up successful");
+
+        let snackBarRef = this.snackbar.open("Sign up successful", "Ok");
+
+        snackBarRef.onAction().subscribe(() => {
+          this.router.navigateByUrl('/app/auth/sign-in');
+        });
+
+        // console.log("Sign up successful");
       },
       error: (error : ErrorResponseDto) => {
         console.log(error.message + error.time);
