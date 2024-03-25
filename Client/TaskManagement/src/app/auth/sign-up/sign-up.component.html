@@ -1,1 +1,52 @@
-<p>sign-up works!</p>
+<div class="container">
+  <mat-card class="card">
+    <mat-card-header class="header">
+      <mat-card-title>Sign up</mat-card-title>
+    </mat-card-header>
+    <mat-card-content class="content">
+      <form [formGroup]="signUpForm" (ngSubmit)="onSubmit()">
+
+        <div class="row">
+          <mat-form-field appearance="fill" class="half-width">
+            <mat-label>First name</mat-label>
+            <input matInput type="text" formControlName="firstName">
+          </mat-form-field>
+
+          <mat-form-field appearance="fill" class="half-width">
+            <mat-label>Last name</mat-label>
+            <input matInput type="text" formControlName="lastName">
+          </mat-form-field>
+        </div>
+
+        <div class="row">
+          <mat-form-field appearance="fill" class="half-width">
+            <mat-label>Username</mat-label>
+            <input matInput type="text" formControlName="username">
+          </mat-form-field>
+
+          <mat-form-field appearance="fill" class="half-width">
+            <mat-label>Email</mat-label>
+            <input matInput type="email" formControlName="email">
+          </mat-form-field>
+        </div>
+
+        <div class="row">
+          <mat-form-field appearance="fill" class="full-width">
+            <mat-label>Password</mat-label>
+            <input matInput type="password" formControlName="password">
+          </mat-form-field>
+        </div>
+
+
+        <button mat-raised-button type="submit" style="background-color: greenyellow; color: white;">Sign up</button>
+        <p style="padding-top: 20px">
+          <a routerLink = "/app/auth/sign-in">Already have an account? Sign in</a>
+        </p>
+      </form>
+    </mat-card-content>
+  </mat-card>
+</div>
+
+
+
+

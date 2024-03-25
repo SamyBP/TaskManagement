@@ -19,15 +19,11 @@
           </mat-form-field>
         </div>
 
-        <button mat-raised-button type="submit" style="background-color: cornflowerblue; color: white;">Login</button>
+        <button mat-raised-button type="submit" style="background-color: cornflowerblue; color: white;">Sign in</button>
         <p style="padding-top: 20px">
-          <a routerLink = "/">Don't have an account? Sign-up</a>
+          <a routerLink = "/app/auth/sign-up">Don't have an account? Sign-up</a>
         </p>
       </form>
-      <div>
-        <p *ngIf="errorMessage" class="warning">{{errorMessage}}</p>
-      </div>
     </mat-card-content>
   </mat-card>
 </div>
-

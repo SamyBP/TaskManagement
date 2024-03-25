@@ -1,0 +1,47 @@
+.container {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 100vh;
+}
+
+.card {
+  position: relative;
+  width: 50%;
+}
+
+.header {
+  position: absolute;
+  top: -20px;
+  left: 5%;
+  width: 85%;
+  background-color: greenyellow;
+  color: white;
+  padding: 15px;
+  border-radius: 4px;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 1);
+}
+
+.content {
+  flex: 1;
+  padding: 60px 20px;
+}
+
+.row {
+  display: flex;
+  flex-wrap: wrap;
+  margin: 0 -8px;
+}
+
+.half-width {
+  flex: 0 0 48%;
+  padding-left: 1%;
+}
+
+.full-width {
+  flex: 0 0 97%;
+  padding-left: 1%;
+}
+
+
+
