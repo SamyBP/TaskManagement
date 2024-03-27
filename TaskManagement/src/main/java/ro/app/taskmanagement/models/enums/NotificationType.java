@@ -1,4 +1,4 @@
-package ro.app.taskmanagement.models;
+package ro.app.taskmanagement.models.enums;
 
 public enum NotificationType {
     INFO,

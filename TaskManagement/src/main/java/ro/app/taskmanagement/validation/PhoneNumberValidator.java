@@ -1,21 +1,23 @@
 package ro.app.taskmanagement.validation;
 
-import javax.validation.ConstraintValidator;
-import javax.validation.ConstraintValidatorContext;
+import jakarta.validation.ConstraintValidator;
+import jakarta.validation.ConstraintValidatorContext;
+
 import java.util.regex.Pattern;
 
-public class PhoneNumberValidator implements ConstraintValidator<ValidPhoneNumber, String> {
-
-    private final String PHONE_NUMBER_REGEX = "^(\\+?\\d{1,4}[.-])?\\(?\\d{3}\\)?[.-]\\d{3}[.-]\\d{4}$";
-
+public class PhoneNumberValidator implements ConstraintValidator<PhoneNumber, String> {
     @Override
-    public void initialize(ValidPhoneNumber constraintAnnotation) {
+    public void initialize(PhoneNumber constraintAnnotation) {
     }
 
     @Override
-    public boolean isValid(String phoneNumber, ConstraintValidatorContext constraintValidatorContext) {
-        return Pattern.compile(PHONE_NUMBER_REGEX)
-                .matcher(phoneNumber)
+    public boolean isValid(String s, ConstraintValidatorContext constraintValidatorContext) {
+
+        if (s == null || s.isEmpty())
+            return true;
+
+        return Pattern.compile("^(\\d{3}[- .]?){2}\\d{4}$")
+                .matcher(s)
                 .matches();
     }
 }

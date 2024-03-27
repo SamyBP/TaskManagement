@@ -6,15 +6,15 @@
 
 .half-width {
   flex: 0 0 48%; /* Set width to 48% for two fields side-by-side */
-  padding: 0 10px; /* Add some padding for spacing between fields */
+  padding-left: 1.5% /* Add some padding for spacing between fields */
 }
 
 .third-width {
   flex: 0 0 32%; /* Set width to 32% for three fields side-by-side */
-  padding: 0 6px; /* Add some padding for spacing between fields */
+  padding-left: 1% /* Add some padding for spacing between fields */
 }
 
 .full-width {
   flex: 0 0 98%;
-  padding: 0 6px;
+  padding-left: 1%;
 }

@@ -5,8 +5,6 @@ import lombok.AllArgsConstructor;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
-import ro.app.taskmanagement.validation.ValidEmail;
-import ro.app.taskmanagement.validation.ValidPhoneNumber;
 
 import java.util.Collection;
 
@@ -15,40 +13,47 @@ import java.util.Collection;
 @AllArgsConstructor
 @NoArgsConstructor
 @Entity
+@Table(name = "user")
 public class User {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private long id;
 
+    @Column(name = "first_name")
     private String firstName;
 
+    @Column(name = "last_name")
     private String lastName;
 
-    @Column(unique = true)
+    @Column(unique = true, name = "username")
     private String username;
 
-    @ValidEmail
-    @Column(unique = true)
+    @Column(unique = true, name = "email")
     private String email;
 
+    @Column(name = "password")
     private String password;
 
+    @Column(name = "address")
     private String address;
 
-    @ValidPhoneNumber
+    @Column(name = "phone_number")
     private String phoneNumber;
 
+    @Column(name = "city")
     private String city;
 
+    @Column(name = "country")
     private String country;
 
+    @Column(name = "postal_code")
     private String postalCode;
 
-    @OneToMany
+    @OneToMany(mappedBy = "user", cascade = CascadeType.ALL)
     private Collection<Task> tasks;
 
-    @OneToMany
+    @OneToMany(mappedBy = "user", cascade = CascadeType.ALL)
     private Collection<Notification> notifications;
 
     public User(String firstName, String lastName, String email, String password, String address) {

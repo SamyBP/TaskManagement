@@ -1,40 +1,21 @@
 package ro.app.taskmanagement.validation;
 
-import ro.app.taskmanagement.exceptions.InvalidPasswordException;
+import jakarta.validation.ConstraintValidator;
+import jakarta.validation.ConstraintValidatorContext;
 
-import javax.validation.ConstraintValidator;
-import javax.validation.ConstraintValidatorContext;
-
-public class PasswordValidator implements ConstraintValidator<ValidPassword, String> {
-
-    private final int MIN_LENGTH = 6;
+public class PasswordValidator implements ConstraintValidator<Password, String> {
+    private static final int MIN_LENGTH = 6;
 
     @Override
-    public void initialize(ValidPassword constraintAnnotation) {
+    public void initialize(Password constraintAnnotation) {
     }
 
     @Override
-    public boolean isValid(final String password, final ConstraintValidatorContext context) {
-        boolean hasUppercase = hasUppercase(password);
-        boolean hasDigit = hasDigit(password);
-        boolean hasWhiteSpaces = hasWhiteSpace(password);
-
-        boolean valid = password.length() >= MIN_LENGTH && hasDigit && hasUppercase && !hasWhiteSpaces;
-
-
-        if (!valid) {
-            if (!hasUppercase) {
-                throw new InvalidPasswordException("Must contain at least one uppercase");
-            }
-            if (!hasDigit) {
-                throw new InvalidPasswordException("Must contain at least one digit");
-            }
-            if (hasWhiteSpaces) {
-                throw new InvalidPasswordException("Must not contain whitespaces");
-            }
-        }
-
-        return valid;
+    public boolean isValid(String s, ConstraintValidatorContext constraintValidatorContext) {
+        return  s.length() >= MIN_LENGTH &
+                hasDigit(s) &
+                hasUppercase(s) &
+                !hasWhiteSpace(s);
     }
 
     private boolean hasUppercase(final String password) {
@@ -48,4 +29,5 @@ public class PasswordValidator implements ConstraintValidator<ValidPassword, Str
     private boolean hasWhiteSpace(final String password) {
         return password.contains(" ");
     }
+
 }

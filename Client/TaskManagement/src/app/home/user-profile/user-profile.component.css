@@ -13,3 +13,8 @@
   /*width: 90%;*/
   padding-right: 10px;
 }
+
+.main-content-container {
+  display: grid;
+  grid-template-columns: 3fr 2fr;
+}

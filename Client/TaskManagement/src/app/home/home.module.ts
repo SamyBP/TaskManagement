@@ -13,11 +13,16 @@ import { CardComponent } from './card/card.component';
 import {MatCardModule} from "@angular/material/card";
 import { UserProfileFormComponent } from './user-profile-form/user-profile-form.component';
 import {MatFormFieldModule} from "@angular/material/form-field";
-import {ReactiveFormsModule} from "@angular/forms";
+import {FormsModule, ReactiveFormsModule} from "@angular/forms";
 import {MatInputModule} from "@angular/material/input";
-import {MatButton, MatButtonModule} from "@angular/material/button";
+import {MatButtonModule} from "@angular/material/button";
 import { HeaderComponent } from './header/header.component';
 import {MatIconModule} from "@angular/material/icon";
+import {MatLineModule} from "@angular/material/core";
+import {MatCheckboxModule} from "@angular/material/checkbox";
+import { MatDialogModule} from "@angular/material/dialog";
+import { SignOutDialogComponent } from './sign-out-dialog/sign-out-dialog.component';
+import { AddTaskDialogComponent } from './add-task-dialog/add-task-dialog.component';
 
 
 @NgModule({
@@ -29,7 +34,9 @@ import {MatIconModule} from "@angular/material/icon";
     TasksComponent,
     CardComponent,
     UserProfileFormComponent,
-    HeaderComponent
+    HeaderComponent,
+    SignOutDialogComponent,
+    AddTaskDialogComponent,
   ],
   imports: [
     CommonModule,
@@ -41,7 +48,11 @@ import {MatIconModule} from "@angular/material/icon";
     ReactiveFormsModule,
     MatInputModule,
     MatButtonModule,
-    MatIconModule
+    MatIconModule,
+    MatLineModule,
+    MatCheckboxModule,
+    MatDialogModule,
+    FormsModule
   ]
 })
 export class HomeModule { }

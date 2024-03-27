@@ -5,3 +5,52 @@
   height: 100%;
   width: 100%;
 }
+
+.right-container{
+  display: grid;
+  grid-template-rows: 1fr 4fr;
+  padding-right: 10px;
+}
+
+.container-content{
+  display:grid;
+  grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
+  grid-gap: 2%;
+  padding-right: 10px;
+}
+
+.card {
+  position: relative;
+  width: 350px;
+  height: 200px;
+}
+
+.header {
+  position: absolute;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  top: -20px;
+  left: 5%;
+  width: 80%;
+  color: white;
+  padding: 15px;
+  border-radius: 4px;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 1);
+}
+
+.content {
+  flex: 1;
+  padding: 60px 20px;
+}
+
+.status-section {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding-right: 15px;
+}
+
+.delete-button, .edit-button{
+  margin-left: auto;
+}

@@ -1,6 +1,10 @@
 <div class="header">
+  <button mat-fab extended="add task" (click)="openAddTaskDialog()" style="{{signOutStyle}}" *ngIf="showAddButton">
+    <mat-icon>add</mat-icon>
+    Add task
+  </button>
   <div class="corner-elements">
-    <button mat-fab extended="Sign out" style="background-color: indianred;color: white;">
+    <button mat-fab extended="Sign out" style="{{signOutStyle}}" (click)="openSignOutDialog()">
       <mat-icon>logout</mat-icon>
       sign out
     </button>

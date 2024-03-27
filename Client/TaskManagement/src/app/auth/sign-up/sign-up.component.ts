@@ -49,8 +49,6 @@ export class SignUpComponent implements OnInit{
         snackBarRef.onAction().subscribe(() => {
           this.router.navigateByUrl('/app/auth/sign-in');
         });
-
-        // console.log("Sign up successful");
       },
       error: (error : ErrorResponseDto) => {
         console.log(error.message + error.time);

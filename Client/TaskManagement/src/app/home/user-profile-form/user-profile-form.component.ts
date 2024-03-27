@@ -1,10 +1,11 @@
-import {Component, OnInit} from '@angular/core';
+import {Component, EventEmitter, OnInit, Output} from '@angular/core';
 import {FormBuilder, FormGroup, Validators} from "@angular/forms";
 import {MatSnackBar} from "@angular/material/snack-bar";
 import {UserEditDto} from "../../dtos/user-edit.dto";
 import {UserService} from "../../services/user.service";
 import {TokenService} from "../../services/token.service";
 import {HttpStatusCode} from "@angular/common/http";
+import {Router} from "@angular/router";
 
 @Component({
   selector: 'app-user-profile-form',
@@ -12,9 +13,8 @@ import {HttpStatusCode} from "@angular/common/http";
   styleUrl: './user-profile-form.component.css'
 })
 export class UserProfileFormComponent implements OnInit{
-
+  @Output() refresh = new EventEmitter<boolean>;
   profileForm!: FormGroup;
-  isSuccessful!: boolean;
 
   constructor(private formBuilder : FormBuilder,
               private snackBar: MatSnackBar,
@@ -24,7 +24,7 @@ export class UserProfileFormComponent implements OnInit{
   ngOnInit(): void {
     this.profileForm = this.formBuilder.group({
       username: ['', !Validators],
-      email: ['', Validators.pattern("^[\\w-\\.]+@([\\w-]+\\.)+[\\w-]{2,4}$")],
+      email: ['', !Validators],
       firstName: ['', !Validators],
       lastName: ['', !Validators],
       address: ['', !Validators],
@@ -55,21 +55,20 @@ export class UserProfileFormComponent implements OnInit{
       const userId : number = decodedToken.id;
       this.userService.editUserProfile(userId, userEditDto).subscribe({
         next : (statusCode : HttpStatusCode) => {
-          this.isSuccessful = true;
+          let snackBarRef = this.snackBar.open("Edited profile", "Ok");
+
+          snackBarRef.onAction().subscribe(() => {
+            this.refresh.emit(true);
+          });
         },
         error : (error : HttpStatusCode) => {
-          this.isSuccessful = false
+          let snackBarRef = this.snackBar.open("Something went wrong", "Ok");
+
+          snackBarRef.onAction().subscribe(() => {
+            this.refresh.emit(true);
+          });
         }
       })
     }
-  }
-
-  openSnackbar() : void {
-    let message: string;
-    if (this.isSuccessful)
-      message = "Edited profile!";
-    else
-      message = "Error";
-    this.snackBar.open(message, "ok");
   }
 }

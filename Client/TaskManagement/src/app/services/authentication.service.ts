@@ -13,10 +13,10 @@ export class AuthenticationService {
   }
 
   public signIn(dto: SignInDto): Observable<SignInResponseDto>  {
-    return this.http.post<SignInResponseDto>('http://localhost:8080/app/auth/signin', dto);
+    return this.http.post<SignInResponseDto>('http://localhost:8080/api/auth/signin', dto);
   }
 
   public signUp(dto : SignUpDto) : Observable<any> {
-    return this.http.post<any>('http://localhost:8080/app/auth/signup', dto);
+    return this.http.post<any>('http://localhost:8080/api/auth/signup', dto);
   }
 }

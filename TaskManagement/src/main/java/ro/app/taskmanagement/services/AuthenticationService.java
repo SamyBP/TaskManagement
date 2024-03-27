@@ -11,9 +11,9 @@ import ro.app.taskmanagement.models.User;
 import ro.app.taskmanagement.exceptions.EmailAlreadyTakenException;
 import ro.app.taskmanagement.exceptions.InvalidCredentialException;
 
+
 @Service
 public class AuthenticationService {
-
     private final IUserRepository userRepository;
     private final Mapper<User> userMapper;
 

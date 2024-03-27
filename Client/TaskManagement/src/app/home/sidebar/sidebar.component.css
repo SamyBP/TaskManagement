@@ -38,4 +38,9 @@
   border-bottom: 1px solid grey;
 }
 
+.active {
+  background-color: #e0e0e0; /* Lighten background on hover */
+  /*cursor: pointer; !* Indicate clickable behavior *!*/
+}
+
 

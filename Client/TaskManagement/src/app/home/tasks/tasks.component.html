@@ -2,7 +2,31 @@
   <div>
     <app-sidebar></app-sidebar>
   </div>
-  <div>
-    <p>Tasks works</p>
+  <div class="right-container">
+    <div>
+      <app-header [showAddButton]="true" [signOutStyle]="'background-color: purple;color: white;'"></app-header>
+    </div>
+    <div class="container-content">
+      <div *ngFor="let task of tasks">
+        <mat-card class="card">
+          <mat-card-header class="header" [style.background-color]="'purple'">
+            <mat-card-title>{{task.name}}</mat-card-title>
+            <button mat-icon-button (click)="deleteTask(task)" class="delete-button" style="color: red;">
+              <mat-icon>delete</mat-icon>
+            </button>
+          </mat-card-header>
+          <mat-card-content class="content">
+            <p><b> {{task.content}} </b></p>
+            <p>Deadline: {{task.deadline}}</p>
+            <div class="status-section">
+              <p>Status: <span contenteditable="true" (blur)="updateTaskStatus(task, $event)">{{task.status}}</span></p>
+              <button mat-icon-button (click)="editTaskStatus(task)" class="edit-button"  style="color: yellow;">
+                <mat-icon>edit</mat-icon>
+              </button>
+            </div>
+          </mat-card-content>
+        </mat-card>
+      </div>
+    </div>
   </div>
 </div>

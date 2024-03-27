@@ -3,6 +3,7 @@ package ro.app.taskmanagement.handlers;
 import jakarta.servlet.http.HttpServletRequest;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
+import org.springframework.web.bind.MethodArgumentNotValidException;
 import org.springframework.web.bind.annotation.ControllerAdvice;
 import org.springframework.web.bind.annotation.ExceptionHandler;
 import ro.app.taskmanagement.exceptions.*;
@@ -51,8 +52,8 @@ public class DefaultExceptionHandler {
         return new ResponseEntity<>(error, HttpStatus.NOT_FOUND);
     }
 
-    @ExceptionHandler(InvalidEmailException.class)
-    public ResponseEntity<Error> handleException(InvalidEmailException e, HttpServletRequest request) {
+    @ExceptionHandler(MethodArgumentNotValidException.class)
+    public ResponseEntity<Error> handleException(MethodArgumentNotValidException e, HttpServletRequest request) {
 
         Error error = new Error(
                 request.getRequestURI(),
@@ -64,14 +65,13 @@ public class DefaultExceptionHandler {
         return new ResponseEntity<>(error, HttpStatus.BAD_REQUEST);
     }
 
-    @ExceptionHandler(InvalidPasswordException.class)
-    public ResponseEntity<Error> handleException(InvalidPasswordException e, HttpServletRequest request) {
-
+    @ExceptionHandler(NoRowsAffectedException.class)
+    public ResponseEntity<Error> handleException(NoRowsAffectedException e, HttpServletRequest request) {
         Error error = new Error(
-                request.getRequestURI(),
-                e.getMessage(),
-                HttpStatus.BAD_REQUEST.value(),
-                LocalDateTime.now()
+          request.getRequestURI(),
+          e.getMessage(),
+          HttpStatus.BAD_REQUEST.value(),
+          LocalDateTime.now()
         );
 
         return new ResponseEntity<>(error, HttpStatus.BAD_REQUEST);

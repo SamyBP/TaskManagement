@@ -4,14 +4,31 @@
   </div>
   <div class="right-container">
     <div>
-      <app-header [title]="'User Profile'"></app-header>
+      <app-header [signOutStyle]="'background-color: indianred;color: white;'"></app-header>
     </div>
-    <div>
-      <app-card [cardTitle]="'User profile'"[headerColor]="'indianred'">
-        <div class="card-body">
-          <app-user-profile-form></app-user-profile-form>
-        </div>
-      </app-card>
+    <div class="main-content-container">
+      <div>
+        <app-card [cardTitle]="'Edit profile'" [headerColor]="'indianred'">
+          <div class="card-body">
+            <app-user-profile-form (refresh)="refresh($event)"></app-user-profile-form>
+          </div>
+        </app-card>
+      </div>
+
+      <div>
+        <app-card [cardTitle]="'User profile'" [headerColor]="'lightblue'">
+          <div class="card-body">
+            <p>Name: {{user.firstName + " " + user.lastName}}</p>
+            <p>Email: {{user.email}} </p>
+            <p>Username: {{user.username}}</p>
+            <p>Phone number: {{user.phoneNumber}}</p>
+            <p>Address: {{user.address}}</p>
+            <p>City: {{user.city}}</p>
+            <p>Country: {{user.country}}</p>
+            <p>Postal code: {{user.postalCode}}</p>
+          </div>
+        </app-card>
+      </div>
     </div>
   </div>
 </div>

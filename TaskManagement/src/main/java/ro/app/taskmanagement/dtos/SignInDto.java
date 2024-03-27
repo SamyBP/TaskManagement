@@ -1,22 +1,22 @@
 package ro.app.taskmanagement.dtos;
 
 
+import jakarta.validation.constraints.Email;
+import jakarta.validation.constraints.Min;
+import jakarta.validation.constraints.NotEmpty;
 import lombok.*;
-import ro.app.taskmanagement.validation.ValidEmail;
-import ro.app.taskmanagement.validation.ValidPassword;
-
-import javax.validation.constraints.NotEmpty;
+import ro.app.taskmanagement.validation.Password;
 
 @Getter
 @Setter
 @AllArgsConstructor
 @NoArgsConstructor
 public class SignInDto {
-    @ValidEmail
+    @Email
     @NotEmpty
     private String email;
 
-    @ValidPassword
+    @Password
     @NotEmpty
     private String password;
 }

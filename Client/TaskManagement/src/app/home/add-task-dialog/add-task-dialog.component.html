@@ -1,0 +1,31 @@
+<h2 mat-dialog-title>Add a new task</h2>
+<mat-dialog-content>
+   <form [formGroup]="addTaskForm" (ngSubmit)="addTask()">
+     <div>
+       <mat-form-field>
+         <mat-label>Title</mat-label>
+         <input matInput type="text" formControlName="name">
+       </mat-form-field>
+     </div>
+
+     <div>
+       <mat-form-field>
+         <mat-label>Content</mat-label>
+         <input matInput type="text" formControlName="content">
+       </mat-form-field>
+     </div>
+
+     <div>
+       <mat-form-field>
+         <mat-label>Deadline</mat-label>
+         <input matInput type="text" formControlName="deadline">
+       </mat-form-field>
+     </div>
+
+     <button mat-stroked-button style="background-color: purple; color: white;">Add task</button>
+     <button mat-stroked-button mat-dialog-close style="background-color: red; color: white; padding-left: 10px">Cancel</button>
+   </form>
+</mat-dialog-content>
+<!--<mat-dialog-actions>-->
+<!--  <button mat-button mat-dialog-close>Cancel</button>-->
+<!--</mat-dialog-actions>-->

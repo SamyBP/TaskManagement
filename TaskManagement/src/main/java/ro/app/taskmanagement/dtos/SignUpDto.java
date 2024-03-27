@@ -1,13 +1,13 @@
 package ro.app.taskmanagement.dtos;
 
+import jakarta.validation.constraints.Email;
+import jakarta.validation.constraints.Min;
+import jakarta.validation.constraints.NotEmpty;
 import lombok.AllArgsConstructor;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
-import ro.app.taskmanagement.validation.ValidEmail;
-import ro.app.taskmanagement.validation.ValidPassword;
-
-import javax.validation.constraints.NotEmpty;
+import ro.app.taskmanagement.validation.Password;
 
 @Getter
 @Setter
@@ -23,11 +23,11 @@ public class SignUpDto {
     @NotEmpty
     private String username;
 
-    @ValidEmail
+    @Email
     @NotEmpty
     private String email;
 
-    @ValidPassword
+    @Password
     @NotEmpty
     private String password;
 }
