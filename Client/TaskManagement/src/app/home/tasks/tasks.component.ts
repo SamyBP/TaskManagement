@@ -4,7 +4,7 @@ import {TaskService} from "../../services/task.service";
 import {TokenService} from "../../services/token.service";
 import {ErrorResponseDto} from "../../dtos/error-response.dto";
 import {MatSnackBar} from "@angular/material/snack-bar";
-import {MatButton} from "@angular/material/button";
+import {TaskStatus} from "../../models/task-status.model";
 
 @Component({
   selector: 'app-tasks',
@@ -73,5 +73,16 @@ export class TasksComponent implements OnInit{
     })
 
     console.log(task);
+  }
+
+  getHeaderColor(task : TaskModel) : string {
+    switch (task.status) {
+      case TaskStatus.TODO:
+        return 'purple';
+      case TaskStatus.IN_PROGRESS:
+        return 'lightblue';
+      case TaskStatus.COMPLETED:
+        return  'greenyellow';
+    }
   }
 }

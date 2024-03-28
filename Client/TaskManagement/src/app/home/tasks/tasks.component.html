@@ -9,7 +9,7 @@
     <div class="container-content">
       <div *ngFor="let task of tasks">
         <mat-card class="card">
-          <mat-card-header class="header" [style.background-color]="'purple'">
+          <mat-card-header class="header" [style.background-color]="getHeaderColor(task)">
             <mat-card-title>{{task.name}}</mat-card-title>
             <button mat-icon-button (click)="deleteTask(task)" class="delete-button" style="color: red;">
               <mat-icon>delete</mat-icon>
